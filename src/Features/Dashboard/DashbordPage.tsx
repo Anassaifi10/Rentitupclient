@@ -1,6 +1,7 @@
 import Layout from "../../Layout";
 import CategorySection from "./Components/CategorySection";
 import DashBordUpperImage from "./Components/DashBordUpperImage";
+import ItemSection from "./Components/ItemSection";
 
 function DashbordPage() {
     return (
@@ -10,7 +11,7 @@ function DashbordPage() {
                 <DashBordUpperImage />
                 <div className="flex flex-col">
                    <CategorySection/>
-
+                   <ItemSection/>
                 </div>
             </div>
         </Layout>

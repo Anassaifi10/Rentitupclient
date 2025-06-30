@@ -1,7 +1,22 @@
 import authImage from '../../assets/Auth.png'
-import { Outlet } from 'react-router'
+import { Outlet, useLocation, useNavigate } from 'react-router'
 import logo from '../../assets/RentItupLogo.png'
+import { useEffect } from 'react';
+import { toast } from 'react-toastify';
 function Authpage() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(()=>{
+    console.log(location.pathname)
+    if(location.pathname!=='/auth/reset-password'&&(localStorage.getItem('accessToken')||localStorage.getItem('refreshToken'))) {
+      toast.info("You are already logged in");
+      navigate("/");
+    }
+    else{
+      console.log("you need Login")
+    }
+  },[])
   return (
     // <div className="h-screen w-full bg-white flex items-center justify-center">
       <div className="w-full h-screen  flex flex-col md:flex-row overflow-hidden ">
@@ -12,6 +27,7 @@ function Authpage() {
         </div>
 
        <img src={authImage} alt="auth" className="max-w-full h-screen" />
+       
       </div>
     // </div>
   )

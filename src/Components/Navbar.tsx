@@ -1,12 +1,39 @@
 import logo from "../assets/RentItupLogo.png"
 import { ShoppingCart, TableOfContents, Upload, UserRoundPen, LogOut } from 'lucide-react';
 import Avtar from "./Common/Avtar";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { useAppDispatch, useAppSelector } from "../store";
+import { getUserInfo } from "../Services/AuthServices";
+import { setUserInfo, clearUserInfo } from "../Features/Auth/UserInfoSlice";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router";
+
+const AvatarMemo = React.memo(Avtar, (prev, next) => prev.name === next.name && prev.src === next.src && prev.size === next.size)
 
 function Navbar() {
+  const userinfo = useAppSelector(state => state.userInfo);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const fetchUserInfo = async () => {
+
+    const userInfo: any = await getUserInfo();
+    if (userInfo?.succeeded) {
+      dispatch(setUserInfo(userInfo));
+    } else {
+      toast.warn("Failed to fetch user info");
+    }
+  };
+  useEffect(() => {
+    if (Object.keys(userinfo).length === 0) {
+
+      fetchUserInfo();
+    }
+
+  }, [userinfo]);
   const [showDropdown, setShowDropdown] = useState(false);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
   const iconRef = useRef<SVGSVGElement | null>(null);
+
 
   // Close dropdown on outside click
   useEffect(() => {
@@ -23,6 +50,14 @@ function Navbar() {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
+
+  function Logout() {
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('refreshToken');
+    dispatch(clearUserInfo());
+    navigate("/auth/login");
+  }
 
   return (
     <div className="w-screen h-20  flex items-center justify-between px-10 relative">
@@ -49,13 +84,13 @@ function Navbar() {
             <li className="px-4 py-2 flex gap-3 items-center hover:bg-orange-400 hover:text-white cursor-pointer transition-colors duration-200 border-b border-gray-200">
               <UserRoundPen /> Update Profile
             </li>
-            <li className="px-4 py-2 flex gap-3 items-center hover:bg-orange-400 hover:text-white cursor-pointer transition-colors duration-200">
+            <li onClick={() => Logout()} className="px-4 py-2 flex gap-3 items-center hover:bg-orange-400 hover:text-white cursor-pointer transition-colors duration-200">
               <LogOut /> Logout
             </li>
           </ul>
         </div>
 
-        <Avtar name="Anas" src="" size="10" />
+        <AvatarMemo name={userinfo?.email ?? ''} src={userinfo.profileimage??""} size="10" />
       </div>
     </div>
   )
