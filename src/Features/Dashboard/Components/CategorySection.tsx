@@ -10,7 +10,7 @@ const categories = [
 
 function CategorySection() {
   return (
-    <div className="p-4 bg-white shadow-md mt-4 rounded-lg">
+    <div className="p-10 bg-white shadow-md mt-4 rounded-lg">
       <h2 className="text-lg sm:text-xl font-bold mb-4 text-gray-800">Browse Categories</h2>
 
       <div className="flex gap-3 overflow-x-auto whitespace-nowrap pb-1 no-scrollbar">

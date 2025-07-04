@@ -78,10 +78,10 @@ function Navbar() {
     ${showDropdown ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'}`}
         >
           <ul className="text-sm text-gray-700">
-            <li className="px-4 py-2 flex gap-3 items-center hover:bg-orange-400 hover:text-white cursor-pointer transition-colors duration-200 border-b border-gray-200">
+            <li onClick={()=>navigate("/Item")} className="px-4 py-2 flex gap-3 items-center hover:bg-orange-400 hover:text-white cursor-pointer transition-colors duration-200 border-b border-gray-200">
               <Upload /> Upload Item
             </li>
-            <li className="px-4 py-2 flex gap-3 items-center hover:bg-orange-400 hover:text-white cursor-pointer transition-colors duration-200 border-b border-gray-200">
+            <li onClick={()=>navigate("/Myprofile")} className="px-4 py-2 flex gap-3 items-center hover:bg-orange-400 hover:text-white cursor-pointer transition-colors duration-200 border-b border-gray-200">
               <UserRoundPen /> Update Profile
             </li>
             <li onClick={() => Logout()} className="px-4 py-2 flex gap-3 items-center hover:bg-orange-400 hover:text-white cursor-pointer transition-colors duration-200">

@@ -37,15 +37,15 @@ function ItemSection() {
 
 
   return (
-    <div className="p-4 bg-white shadow-md mt-4">
+    <div className="p-10 bg-white shadow-md mt-4">
       <h2 className="text-lg sm:text-xl font-bold mb-4 text-gray-800">Item Section</h2>
       {ItemState.loading && <p>Loading...</p>}
       {ItemState.error && <p className="text-red-500">{ItemState.error}</p>}
-      <ul className="mt-4">
+      <div className="mt-4 flex flex-row  justify-between flex-wrap gap-4">
         {ItemState.items.map(item => (
           <ProductCard key={item.itemName} product={item}  onAddToCart={() => {}}/>
         ))}
-      </ul>
+      </div>
     </div>
   )
 }

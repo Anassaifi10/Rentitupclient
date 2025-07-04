@@ -13,6 +13,7 @@ import { store } from './store';
 import { ToastContainer } from "react-toastify";
 import UserInfoComponent from './Components/UserInfoComponent';
 import ResetPassword from './Features/Auth/Components/ResetPassword';
+import Item from './Features/Item/Item';
 
 const router=createBrowserRouter([
   {
@@ -47,6 +48,10 @@ const router=createBrowserRouter([
   {
     path: 'MyProfile',
     element: <UserInfoComponent />
+  },
+  {
+    path:'Item',
+    element: <Item />
   }
 ]);
 

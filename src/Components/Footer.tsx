@@ -1,4 +1,5 @@
-import { Home, Info, Link, Mail } from "lucide-react";
+import { Home, Info, Mail } from "lucide-react";
+import { Link } from "react-router-dom";
 
 
 function Footer() {
@@ -10,14 +11,14 @@ function Footer() {
             &copy; {new Date().getFullYear()} RentalApp. All rights reserved.
           </span>
           <nav className="flex flex-row gap-6 items-center">
-            <Link to="/" className="hover:underline flex items-center gap-1">
+            <Link to="/" className="hover:underline flex items-center gap-1 cursor-pointer">
               <Home className="w-4 h-4" /> Home
-            </Link>   <a href="#" className="hover:underline flex items-center gap-1">
+            </Link>   <Link to="#" className="hover:underline flex items-center gap-1 cursor-pointer">
               <Info className="w-4 h-4" /> About
-            </a>
-            <a href="#" className="hover:underline flex items-center gap-1">
+            </Link>
+            <Link to="#" className="hover:underline flex items-center gap-1 cursor-pointer">
               <Mail className="w-4 h-4" /> Contact
-            </a>
+            </Link>
           </nav>
         </div>
       </div>

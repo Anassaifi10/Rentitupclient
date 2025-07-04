@@ -6,10 +6,10 @@ import ItemSection from "./Components/ItemSection";
 function DashbordPage() {
     return (
         <Layout>
-            <div className="h-full w-screen">
+            <div className="h-full">
 
                 <DashBordUpperImage />
-                <div className="flex flex-col">
+                <div className="flex flex-col p-5">
                    <CategorySection/>
                    <ItemSection/>
                 </div>

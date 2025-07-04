@@ -4,7 +4,7 @@ import { IndianRupee } from "lucide-react";
 
 const ProductCard = ({ product, onAddToCart }: { product: Item; onAddToCart: (product: any) => void }) => {
     return (
-        <div className="bg-white shadow-md hover:shadow-lg transition-shadow duration-200 rounded-md p-4 max-w-xs border border-gray-200 ">
+        <div className="bg-white shadow-md hover:shadow-lg transition-shadow duration-200 rounded-md p-4 w-screen sm:w-xs border border-gray-200 ">
             <img
                 src={product.imageurl}
                 alt={product.itemName}

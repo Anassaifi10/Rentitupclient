@@ -60,9 +60,11 @@ function UserInfoComponent() {
   async function onSubmit(data: UpdateProfile) {
     try {
       var respo = await updateUserInfo({ username: data.firstName, phoneno: data.phoneNumber });
-
+      setIsEditing(false);
+      toast.success("Profile updated successfully");
     } catch (error: any) {
       toast.error("Failed to update profile", error.message);
+      
     }
   }
   const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -173,8 +175,8 @@ function UserInfoComponent() {
             </div>
 
 
-            <div className=" flex flex-col md:flex-row gap-5 items-center ">
-              <div className="flex flex-col">
+            <div className=" flex flex-row gap-5 items-center ">
+              <div className="flex flex-col w-[50%]">
                 <label className="text-sm text-gray-600">Password</label>
                 <input
                   type="password"
@@ -183,7 +185,7 @@ function UserInfoComponent() {
                   className=" text-sm px-3 py-1 mt-1 border bg-gray-200 border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-orange-400"
                 />
               </div>
-              <button onClick={() => navigate("/auth/reset-password")} type="button" className="bg-[#F1592A] text-white text-sm px-3 py-1 rounded-md hover:bg-[#e05226] transition cursor-pointer flex flex-row gap-2">
+              <button onClick={() => navigate("/auth/reset-password")} type="button" className="bg-[#F1592A] text-white text-xs px-3 py-1 rounded-md hover:bg-[#e05226] transition cursor-pointer flex flex-row gap-2">
                 change password <KeyRound />
               </button>
             </div>
